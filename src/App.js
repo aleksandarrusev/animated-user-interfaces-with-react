@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { CSSTransition } from "react-transition-group";
 
 function App() {
+  const [visible, setVisible] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="app">
+      <div className="box-container">
+        <CSSTransition
+          in={visible}
+          timeout={500}
+          classNames="my-node"
+          unmountOnExit
         >
-          Learn React
-        </a>
-      </header>
+          <div className="box" />
+        </CSSTransition>
+      </div>
+      <div className="btn-container">
+        <button onClick={() => setVisible(!visible)}>Show</button>
+      </div>
     </div>
   );
 }
