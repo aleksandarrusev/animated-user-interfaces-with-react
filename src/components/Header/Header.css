@@ -1,0 +1,8 @@
+.menu {
+    list-style-type:none;
+    display:flex;
+}
+
+.menu li {
+    padding:0 15px;
+}
