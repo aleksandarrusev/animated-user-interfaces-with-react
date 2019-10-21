@@ -14,7 +14,13 @@ a {
     text-decoration: none;
     color: #000;
 }
-
+#root {
+    height:100%;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    flex-direction: column;
+}
 #modal-root {
     z-index: 999;
 }

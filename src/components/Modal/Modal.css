@@ -15,6 +15,7 @@
 
 .modal-overlay .modal {
     background-color:#fff;
-    width:200px;
-    height:350px;
+    width:300px;
+    height:400px;
+    padding:20px;
 }

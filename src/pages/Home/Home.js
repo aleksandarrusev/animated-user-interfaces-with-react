@@ -1,42 +1,26 @@
-import React, {useState, useEffect} from "react";
-import {CSSTransition, Transition} from "react-transition-group";
-import anime from "animejs";
+import React, {useState} from "react";
+import {CSSTransition} from "react-transition-group";
 import './Home.css';
 import Modal from "../../components/Modal/Modal";
 import Button from "../../components/Button/Button";
 
 const Home = () => {
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
     const [modalVisible, setModalVisible] = useState(false);
-
-    useEffect(() => {
-        setVisible(true);
-    }, []);
 
     return <>
         <div className="box-container">
-            <Transition
+            <CSSTransition
                 in={visible}
-                mountOnEnter
                 unmountOnExit
                 timeout={400}
-                addEndListener={(node, done) => {
-                    anime({
-                        complete: done,
-                        duration: 800,
-                        easing: visible ? 'easeInExpo' : 'easeOutExpo',
-                        targets: node,
-                        translateX: visible ? [-300, 0] : [0, 300],
-                        opacity: visible ? [0, 1] : [1, 0],
-                        maxHeight: visible ? [0, '100%'] : ['100%', 0],
-                    });
-                }}
+                classNames="box"
             >
                 <div className="box"/>
-            </Transition>
+            </CSSTransition>
         </div>
         <div className="btn-container">
-            <Button onClick={() => setVisible(!visible)}>Start animation</Button>
+            <Button onClick={() => setVisible(!visible)}>Toggle animation</Button>
             <Button onClick={() => setModalVisible(true)}>Open modal</Button>
         </div>
         <CSSTransition
@@ -45,7 +29,10 @@ const Home = () => {
             classNames="modal"
             unmountOnExit
         >
-            <Modal open={true} closeModal={() => setModalVisible(false)}/>
+            <Modal open={true} closeModal={() => setModalVisible(false)}>
+                <h2>Hello from the modal</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, recusandae.</p>
+            </Modal>
         </CSSTransition>
     </>
 };

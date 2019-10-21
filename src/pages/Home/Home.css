@@ -1,15 +1,15 @@
 .box-container {
-    width: 400px;
     height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width:100%;
 }
 
 .box {
     width: 300px;
     height: 300px;
-    background-color: red;
+    background-color: #000;
 }
 
 .btn-container {
@@ -18,25 +18,25 @@
     justify-content: center;
 }
 
-.my-node-enter {
+.box-enter {
     opacity: 0;
-    transform: translateX(-300px);
+    transform: translateX(-500px) scale(0.6);
 }
 
-.my-node-enter-active {
+.box-enter-active {
     opacity: 1;
     transition: all 400ms;
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
 }
 
-.my-node-exit {
+.box-exit {
     opacity: 1;
 }
 
-.my-node-exit-active {
+.box-exit-active {
     opacity: 0;
     transition: all 400ms;
-    transform: translateX(300px);
+    transform: translateX(500px) scale(0.6);
 }
 
 .modal-enter .modal {

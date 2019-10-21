@@ -4,7 +4,7 @@ import "./Modal.css";
 
 const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({open, closeModal}) => {
+const Modal = ({open, closeModal, children}) => {
 
     const handleClick = (e) => {
         if (e.target.id === 'modal-overlay') {
@@ -13,7 +13,7 @@ const Modal = ({open, closeModal}) => {
     };
 
     const modal = open ? <div className="modal-overlay" id="modal-overlay" onClick={handleClick}>
-        <div className="modal"></div>
+        <div className="modal">{children}</div>
     </div> : null;
 
     return ReactDOM.createPortal(modal, modalRoot);
