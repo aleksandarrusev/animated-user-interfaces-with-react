@@ -1,32 +1,20 @@
 .fade-appear {
     opacity: 0;
-    transform: translateY(100px);
-    transition: opacity 600ms ease-in, transform 200ms ease-in;
-
+    transition: opacity 600ms ease-in;
 }
 
 .fade-appear-done {
     opacity: 1;
-    transform: translateY(0);
-    transition: opacity 600ms ease-in, transform 200ms ease-in;
+    transition: opacity 400ms ease-in;
 }
 
 .fade-enter {
     opacity: 0.01;
-    transform: translateY(100px);
 }
 
 .fade-enter-active {
     opacity: 1;
-    transform: translateY(0);
-    transition: opacity 600ms ease-in, transform 200ms ease-in;
-}
-
-
-.fade-enter.fade-enter-active {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 600ms ease-in, transform 200ms ease-in;
+    transition: opacity 400ms ease-in;
 }
 
 .fade-exit {
@@ -35,8 +23,6 @@
 
 .fade-exit.fade-exit-active {
     opacity: 0.01;
-    transform: translateY(100px);
-    /*transition: opacity 300ms ease-in;*/
     transition: all 400ms ease-out;
 }
 
@@ -52,4 +38,5 @@ section.route-section {
     width: 100%;
     top: 0;
     left: 0;
+    height:100%;
 }
