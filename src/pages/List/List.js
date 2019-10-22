@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import './List.css';
+import './List.scss';
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import Form from "../../components/Form/Form";
 

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {CSSTransition} from "react-transition-group";
-import './Home.css';
+import './Home.scss';
 import Modal from "../../components/Modal/Modal";
 import Button from "../../components/Button/Button";
 

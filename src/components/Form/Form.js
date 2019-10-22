@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "./Form.css";
+import "./Form.scss";
 import Button from "../Button/Button";
 
 const Form = ({submitTodo}) => {

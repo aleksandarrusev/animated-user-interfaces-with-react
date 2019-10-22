@@ -1,5 +1,5 @@
 import React from "react";
-import "./Button.css";
+import "./Button.scss";
 
 const Button = ({children, className, ...props}) => {
     return <button className={`btn ${className ? className : ''}`} {...props}>{children}</button>

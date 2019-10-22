@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import {Switch, withRouter} from "react-router-dom";
-import './AnimatedSwitch.css';
+import './AnimatedSwitch.scss';
 
 const AnimatedSwitch = ({children, location}) => {
     // const [show, setShow] = useState(false);
