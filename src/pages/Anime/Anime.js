@@ -76,24 +76,6 @@ const Anime = () => {
                         </div>
                     </div>
                 </div>
-                <div className="scroll-container">
-                    <div className="2image-box">
-                        <div className="image-box-overlay"></div>
-                    </div>
-                    <div className="2text-box">
-                        <h3 className="heading-container">
-                            <span className="heading">This is how we use Anime.js</span>
-                        </h3>
-                        <p className="description-container">
-                            <span className="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, nesciunt?</span>
-                        </p>
-                        <div className="button-container">
-                            <button className="btn-open">Click here to continue <span className="arrow">&rarr;</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </Transition>)
 };
