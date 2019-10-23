@@ -6,12 +6,12 @@
 
 .scroll-container {
   position: relative;
-  height: calc(100vh - 120px);
+  height: 100vh;
 }
 
 .image-box {
   position: absolute;
-  height: 600px;
+  height: 500px;
   width: 800px;
   right: 0;
   background: url("../../assets/images/macbook-pro.jpg") no-repeat;
@@ -93,6 +93,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-bottom:50px;
 
   .card {
     height: 300px;

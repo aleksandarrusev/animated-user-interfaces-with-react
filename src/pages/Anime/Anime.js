@@ -96,7 +96,7 @@ class Anime extends React.Component {
   }
 
   scrollDown = () => {
-    window.scrollBy({top: window.innerHeight, behavior: "smooth"});
+    window.scrollBy({top: window.innerHeight + 100, behavior: "smooth"});
   };
 
   animateFirstSlide = (el, done) => {
