@@ -19,7 +19,7 @@ const Form = ({ submitTodo }) => {
   return (
     <form className="todo-form" onSubmit={handleSubmit}>
       <input type="text" value={todoName} onChange={handleInputChange} />
-      <Button>Add todo</Button>
+      <Button className="add-todo-btn">Add todo</Button>
     </form>
   );
 };
