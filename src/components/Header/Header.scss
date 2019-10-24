@@ -1,17 +1,24 @@
 .header-container {
-    width:100%;
-    padding:20px 0;
-    border-bottom:1px solid #ccc;
-    display:flex;
-    justify-content:center;
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .menu {
-    list-style-type:none;
-    display:flex;
+  list-style-type: none;
+  display: flex;
 }
 
 .menu li {
-    padding:0 18px;
-    font-weight:bold;
+  padding: 0 18px;
+  font-weight: bold;
+}
+.bottom-line {
+  width: 100%;
+  margin-top: 20px;
+  max-width: 0;
+  border-bottom: 1px solid #9a9a9a;
 }
