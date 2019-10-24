@@ -66,12 +66,14 @@ class Anime extends React.Component {
       targets: ".card",
       opacity: [0, 1],
       duration: 400,
+      scale: [1.4, 1],
       delay: anime.stagger(170),
       easing: "easeOutExpo"
     });
     tl.add({
       targets: [".card-revealing-text"],
       duration: 800,
+      opacity: [0.3, 1],
       translateY: [100, 0],
       easing: "easeOutExpo"
     });
