@@ -1,20 +1,19 @@
 import React from "react";
-import {
-  CSSTransition,
-  Transition,
-  TransitionGroup
-} from "react-transition-group";
+import { Transition, TransitionGroup } from "react-transition-group";
 import "./Anime.scss";
 import anime from "animejs";
 import "../../assets/images/macbook-pro.jpg";
 import isInViewport from "in-viewport";
+import { cards } from "../../cards";
+import DrawingSVG from "../../components/DrawingSVG/DrawingSVG";
 
 class Anime extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       show: false,
-      scrolledToCards: false
+      scrolledToCards: false,
+      scrolledToSvg: false
     };
   }
 
@@ -26,58 +25,7 @@ class Anime extends React.Component {
   scrollBtnRef = React.createRef();
   arrowRef = React.createRef();
   cardsContainerRef = React.createRef();
-
-  cards = [
-    {
-      title: "Card 1",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, nesciunt."
-    },
-    {
-      title: "Card 2",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, nesciunt."
-    },
-    {
-      title: "Card 3",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, nesciunt."
-    },
-    {
-      title: "Card 4",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, nesciunt."
-    },
-    {
-      title: "Card 5",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, nesciunt."
-    },
-    {
-      title: "Card 6",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam, nesciunt."
-    }
-  ];
-
-  animateCardsReveal = () => {
-    const tl = anime.timeline();
-    tl.add({
-      targets: ".card",
-      opacity: [0, 1],
-      duration: 400,
-      scale: [1.4, 1],
-      delay: anime.stagger(170),
-      easing: "easeOutExpo"
-    });
-    tl.add({
-      targets: [".card-revealing-text"],
-      duration: 800,
-      opacity: [0.3, 1],
-      translateY: [100, 0],
-      easing: "easeOutExpo"
-    });
-  };
+  svgContainer = React.createRef();
 
   componentDidMount() {
     this.setState({
@@ -85,14 +33,19 @@ class Anime extends React.Component {
     });
 
     document.addEventListener("scroll", e => {
-      if (
-        isInViewport(this.cardsContainerRef.current) &&
-        !this.state.scrolledToCards
-      ) {
-        this.setState({
-          scrolledToCards: true
-        });
+      const isCardContainerInViewport = isInViewport(
+        this.cardsContainerRef.current
+      );
+      const isSVGContainerInViewport = isInViewport(this.svgContainer.current);
+
+      if (isCardContainerInViewport && !this.state.scrolledToCards) {
+        this.setState({ scrolledToCards: true });
         this.animateCardsReveal();
+      }
+
+      if (isSVGContainerInViewport && !this.state.scrolledToSvg) {
+        this.setState({ scrolledToSvg: true });
+        this.animateSVGDraw();
       }
     });
   }
@@ -101,6 +54,51 @@ class Anime extends React.Component {
     window.scrollBy({ top: window.innerHeight + 100, behavior: "smooth" });
   };
 
+  animateCardsReveal = () => {
+    const tl = anime.timeline();
+    tl.add({
+      targets: ".card",
+      opacity: 1,
+      duration: 400,
+      scale: [1.05, 1],
+      delay: anime.stagger(170),
+      easing: "easeOutExpo"
+    });
+    tl.add(
+      {
+        targets: [".revealing-card-text"],
+        duration: 800,
+        delay: anime.stagger(170),
+        opacity: [0, 1],
+        translateY: [100, 0],
+        easing: "easeOutExpo"
+      },
+      "-=400"
+    );
+    tl.add(
+      {
+        targets: ".card-button",
+        duration: 800,
+        opacity: [0, 1],
+        scale: [0.3, 1],
+        translateY: [50, 0],
+        easing: "easeOutExpo"
+      },
+      "-=400"
+    );
+  };
+
+  animateSVGDraw = () => {
+    anime({
+      targets: [".drawing-svg path", ".drawing-svg g"],
+      delay: function(el, i) {
+        return i * 200;
+      },
+      strokeDashoffset: [anime.setDashoffset, 0],
+      easing: "linear",
+      duration: 400
+    });
+  };
   animateFirstSlide = (el, done) => {
     const tl = anime.timeline({
       duration: 600,
@@ -108,11 +106,19 @@ class Anime extends React.Component {
       complete: done
     });
     tl.add({
-      targets: [this.textBoxRef.current, this.imageBoxRef.current],
-      translateX: [300, 0],
+      targets: this.textBoxRef.current,
+      translateX: [-300, 0],
       opacity: [0, 1],
-      delay: 600
+      delay: 800
     });
+    tl.add(
+      {
+        targets: this.imageBoxRef.current,
+        translateX: [300, 0],
+        opacity: [0, 1]
+      },
+      "-=600"
+    );
     tl.add({
       targets: this.imageBoxOverlayRef.current,
       maxWidth: 0
@@ -189,23 +195,28 @@ class Anime extends React.Component {
             <TransitionGroup className="cards-container">
               <Transition timeout={4000}>
                 <>
-                  {this.cards.map(card => (
+                  {cards.map(card => (
                     <div className="card" key={card.title}>
-                      <h3 className="card-title">
-                        <span className="card-revealing-text">
-                          {card.title}{" "}
-                        </span>
+                      <h3 className="card-title revealing-card-text">
+                        {card.title}
                       </h3>
-                      <div className="card-description">
-                        <span className="card-revealing-text">
-                          {card.description}
-                        </span>
+                      <div className="card-description revealing-card-text">
+                        {card.description}
+                      </div>
+                      <div className="card-footer">
+                        <div className="card-button">+</div>
                       </div>
                     </div>
                   ))}
                 </>
               </Transition>
             </TransitionGroup>
+          </div>
+          <div
+            className="scroll-container svg-container"
+            ref={this.svgContainer}
+          >
+            <DrawingSVG className="drawing-svg" ref={this.drawingSVG} />
           </div>
           <div className="scroll-button" onClick={this.scrollDown}>
             &#8595;
