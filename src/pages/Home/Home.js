@@ -1,40 +1,64 @@
-import React, {useState} from "react";
-import {CSSTransition} from "react-transition-group";
-import './Home.scss';
+import React, { useState } from "react";
+import { CSSTransition } from "react-transition-group";
+import "./Home.scss";
 import Modal from "../../components/Modal/Modal";
 import Button from "../../components/Button/Button";
 
-const Home = () => {
-    const [visible, setVisible] = useState(true);
-    const [modalVisible, setModalVisible] = useState(false);
+class Home extends React.Component {
+  // const [visible, setVisible] = useState(true);
+  // const [modalVisible, setModalVisible] = useState(false);
+  state = {
+    boxVisible: true,
+    modalVisible: false
+  };
 
-    return <>
+  setVisible = value => {
+    this.setState({
+      boxVisible: value
+    });
+  };
+  setModalVisible = value => {
+    this.setState({
+      modalVisible: value
+    });
+  };
+
+  render() {
+    return (
+      <>
         <div className="box-container">
-            <CSSTransition
-                in={visible}
-                unmountOnExit
-                timeout={400}
-                classNames="box"
-            >
-                <div className="box"/>
-            </CSSTransition>
+          <CSSTransition
+            in={this.state.boxVisible}
+            unmountOnExit
+            timeout={400}
+            classNames="box"
+          >
+            <div className="box" />
+          </CSSTransition>
         </div>
         <div className="btn-container">
-            <Button onClick={() => setVisible(!visible)}>Toggle animation</Button>
-            <Button onClick={() => setModalVisible(true)}>Open modal</Button>
+          <Button onClick={() => this.setVisible(!this.state.boxVisible)}>
+            Toggle animation
+          </Button>
+          <Button onClick={() => this.setModalVisible(true)}>Open modal</Button>
         </div>
         <CSSTransition
-            in={modalVisible}
-            timeout={500}
-            classNames="modal"
-            unmountOnExit
+          in={this.state.modalVisible}
+          timeout={500}
+          classNames="modal"
+          unmountOnExit
         >
-            <Modal open={true} closeModal={() => setModalVisible(false)}>
-                <h2>Hello from the modal</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, recusandae.</p>
-            </Modal>
+          <Modal open={true} closeModal={() => this.setModalVisible(false)}>
+            <h2>Hello from the modal</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,
+              recusandae.
+            </p>
+          </Modal>
         </CSSTransition>
-    </>
-};
+      </>
+    );
+  }
+}
 
 export default Home;

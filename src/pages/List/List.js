@@ -3,41 +3,47 @@ import "./List.scss";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Form from "../../components/Form/Form";
 
-const List = () => {
-  const [list, setList] = useState([
-    { name: "Do this" },
-    { name: "Do that" },
-    { name: "Don't forget about this" }
-  ]);
-
-  const addToList = item => {
-    setList([item, ...list]);
+class List extends React.Component {
+  state = {
+    list: [
+      { name: "Do this" },
+      { name: "Do that" },
+      { name: "Don't forget about this" }
+    ]
   };
 
-  const removeFromList = index => {
-    const newList = list.filter((item, i) => index !== i);
-    setList(newList);
+  addToList = item => {
+    this.setState(state => ({ list: [item, ...state.list] }));
+  };
+  removeFromList = index => {
+    const newList = this.state.list.filter((item, i) => index !== i);
+    this.setState({ list: newList });
   };
 
-  return (
-    <TransitionGroup className="list">
-      <Form submitTodo={addToList} />
-      {list.map((item, index) => (
-        <CSSTransition
-          key={item.name}
-          timeout={500}
-          classNames="list-card"
-          unmountOnExit
-        >
-          <div className="list-card-wrapper">
-            <div className="list-card" onClick={() => removeFromList(index)}>
-              <span>{item.name}</span>
+  render() {
+    return (
+      <TransitionGroup className="list">
+        <Form submitTodo={this.addToList} />
+        {this.state.list.map((item, index) => (
+          <CSSTransition
+            key={item.name}
+            timeout={500}
+            classNames="list-card"
+            unmountOnExit
+          >
+            <div className="list-card-wrapper">
+              <div
+                className="list-card"
+                onClick={() => this.removeFromList(index)}
+              >
+                <span>{item.name}</span>
+              </div>
             </div>
-          </div>
-        </CSSTransition>
-      ))}
-    </TransitionGroup>
-  );
-};
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
+    );
+  }
+}
 
 export default List;
