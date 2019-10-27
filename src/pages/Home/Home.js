@@ -5,8 +5,6 @@ import Modal from "../../components/Modal/Modal";
 import Button from "../../components/Button/Button";
 
 class Home extends React.Component {
-  // const [visible, setVisible] = useState(true);
-  // const [modalVisible, setModalVisible] = useState(false);
   state = {
     boxVisible: true,
     modalVisible: false
@@ -42,20 +40,16 @@ class Home extends React.Component {
           </Button>
           <Button onClick={() => this.setModalVisible(true)}>Open modal</Button>
         </div>
-        <CSSTransition
-          in={this.state.modalVisible}
-          timeout={500}
-          classNames="modal"
-          unmountOnExit
+        <Modal
+          open={this.state.modalVisible}
+          closeModal={() => this.setModalVisible(false)}
         >
-          <Modal open={true} closeModal={() => this.setModalVisible(false)}>
-            <h2>Hello from the modal</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,
-              recusandae.
-            </p>
-          </Modal>
-        </CSSTransition>
+          <h2>Hello from the modal</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,
+            recusandae.
+          </p>
+        </Modal>
       </>
     );
   }

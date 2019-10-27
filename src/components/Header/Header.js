@@ -12,15 +12,15 @@ const Header = () => {
         appear={true}
         addEndListener={(node, done) => {
           const tl = anime.timeline({
-            duration: 1000,
+            duration: 800,
             easing: "easeOutExpo"
           });
 
           tl.add({
             targets: ".bottom-line",
             maxWidth: "100%",
-            duration: 2000,
-            delay: 400
+            duration: 1000,
+            delay: 600
           });
           tl.add(
             {

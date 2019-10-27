@@ -61,14 +61,14 @@ class Anime extends React.Component {
       opacity: 1,
       duration: 400,
       scale: [1.2, 1],
-      delay: anime.stagger(170),
+      delay: anime.stagger(100),
       easing: "easeOutExpo"
     }, 400);
     tl.add(
       {
         targets: [".revealing-card-text"],
-        duration: 800,
-        delay: anime.stagger(170),
+        duration: 600,
+        delay: anime.stagger(140),
         opacity: [0, 1],
         translateY: [100, 0],
         easing: "easeOutExpo"
@@ -92,11 +92,11 @@ class Anime extends React.Component {
     anime({
       targets: [".drawing-svg path", ".drawing-svg g"],
       delay: function(el, i) {
-        return i * 200;
+        return i * 160;
       },
       strokeDashoffset: [anime.setDashoffset, 0],
       easing: "linear",
-      duration: 400
+      duration: 200
     });
   };
   animateFirstSlide = (el, done) => {
