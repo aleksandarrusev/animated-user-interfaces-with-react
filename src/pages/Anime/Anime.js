@@ -56,14 +56,17 @@ class Anime extends React.Component {
 
   animateCardsReveal = () => {
     const tl = anime.timeline();
-    tl.add({
-      targets: ".card",
-      opacity: 1,
-      duration: 400,
-      scale: [1.2, 1],
-      delay: anime.stagger(100),
-      easing: "easeOutExpo"
-    }, 400);
+    tl.add(
+      {
+        targets: ".card",
+        opacity: 1,
+        duration: 400,
+        scale: [1.2, 1],
+        delay: anime.stagger(100),
+        easing: "easeOutExpo"
+      },
+      400
+    );
     tl.add(
       {
         targets: [".revealing-card-text"],
@@ -124,30 +127,13 @@ class Anime extends React.Component {
       maxWidth: 0
     });
     tl.add({
-      targets: [this.headingRef.current, this.descriptionRef.current],
-      translateY: [40, 0],
+      targets: [
+        this.headingRef.current,
+        this.descriptionRef.current,
+        this.scrollBtnRef.current
+      ],
+      translateY: [60, 0],
       duration: 500
-    });
-    tl.add(
-      {
-        targets: this.scrollBtnRef.current,
-        translateY: [80, 0],
-        duration: 500,
-        complete: () => {
-          anime({
-            targets: ".arrow",
-            translateX: 5,
-            direction: "alternate",
-            loop: true,
-            easing: "easeInOutSine"
-          });
-        }
-      },
-      "-=500"
-    );
-    tl.add({
-      targets: ".scroll-button",
-      opacity: [0, 1]
     });
   };
 
@@ -158,7 +144,6 @@ class Anime extends React.Component {
       <Transition
         timeout={400}
         in={show}
-        unmountOnExit
         addEndListener={this.animateFirstSlide}
       >
         <div className="page-container">
@@ -192,25 +177,21 @@ class Anime extends React.Component {
             </div>
           </div>
           <div className="scroll-container cards" ref={this.cardsContainerRef}>
-            <TransitionGroup className="cards-container">
-              <Transition timeout={4000}>
-                <>
-                  {cards.map(card => (
-                    <div className="card" key={card.title}>
-                      <h3 className="card-title revealing-card-text">
-                        {card.title}
-                      </h3>
-                      <div className="card-description revealing-card-text">
-                        {card.description}
-                      </div>
-                      <div className="card-footer">
-                        <div className="card-button">+</div>
-                      </div>
-                    </div>
-                  ))}
-                </>
-              </Transition>
-            </TransitionGroup>
+            <div className="cards-container">
+              {cards.map(card => (
+                <div className="card" key={card.title}>
+                  <h3 className="card-title revealing-card-text">
+                    {card.title}
+                  </h3>
+                  <div className="card-description revealing-card-text">
+                    {card.description}
+                  </div>
+                  <div className="card-footer">
+                    <div className="card-button">+</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
           <div
             className="scroll-container svg-container"
