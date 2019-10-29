@@ -29,7 +29,7 @@ class Home extends React.Component {
             in={this.state.boxVisible}
             unmountOnExit
             timeout={400}
-            classNames="box"
+            classNames="slide"
           >
             <div className="box" />
           </CSSTransition>

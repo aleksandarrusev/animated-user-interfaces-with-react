@@ -17,23 +17,33 @@
   display: flex;
   justify-content: center;
 }
+//.slide-appear {
+//  opacity: 0;
+//  transform: translateX(-500px) scale(0.6);
+//}
+//
+//.slide-appear-done {
+//  opacity: 1;
+//  transition: all 400ms;
+//  transform: translateX(0) scale(1);
+//}
 
-.box-enter {
+.slide-enter {
   opacity: 0;
   transform: translateX(-500px) scale(0.6);
 }
 
-.box-enter-active {
+.slide-enter-active {
   opacity: 1;
   transition: all 400ms;
   transform: translateX(0) scale(1);
 }
 
-.box-exit {
+.slide-exit {
   opacity: 1;
 }
 
-.box-exit-active {
+.slide-exit-active {
   opacity: 0;
   transition: all 400ms;
   transform: translateX(500px) scale(0.6);
