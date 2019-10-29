@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./List.scss";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import Form from "../../components/Form/Form";

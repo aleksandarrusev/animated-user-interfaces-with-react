@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { CSSTransition } from "react-transition-group";
 import "./Home.scss";
 import Modal from "../../components/Modal/Modal";
