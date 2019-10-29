@@ -28,26 +28,26 @@
   display: flex;
 }
 
-.list-card-enter {
+.slide-down-enter {
   opacity: 0;
   max-height: 0;
 }
 
-.list-card-enter-active {
+.slide-down-enter-active {
   transition: max-height 500ms ease-in, opacity 300ms ease-in;
   opacity: 1;
   max-height: 120px;
 }
 
-.list-card-exit {
+.slide-down-exit {
   opacity: 1;
 }
 
-.list-card-exit-active {
+.slide-down-exit-active {
   opacity: 0;
   transition: max-height 500ms ease-in-out, opacity 300ms linear;
   max-height: 0;
 }
-.list-card-exit-active span {
+.slide-down-exit-active span {
   text-decoration: line-through;
 }

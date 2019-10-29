@@ -28,7 +28,7 @@ class List extends React.Component {
           <CSSTransition
             key={item.name}
             timeout={500}
-            classNames="list-card"
+            classNames="slide-down"
             unmountOnExit
           >
             <div className="list-card-wrapper">
