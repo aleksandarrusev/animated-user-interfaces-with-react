@@ -16,7 +16,7 @@ const Modal = ({ open, closeModal, children }) => {
     <CSSTransition
       in={open}
       timeout={500}
-      classNames="modal"
+      classNames="show-up"
       unmountOnExit
     >
       <div className="modal-overlay" id="modal-overlay" onClick={handleClick}>
