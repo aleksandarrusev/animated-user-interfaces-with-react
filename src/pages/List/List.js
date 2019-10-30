@@ -22,26 +22,28 @@ class List extends React.Component {
 
   render() {
     return (
-      <TransitionGroup className="list">
+      <div className="list">
         <Form submitTodo={this.addToList} />
-        {this.state.list.map((item, index) => (
-          <CSSTransition
-            key={item.name}
-            timeout={500}
-            classNames="slide-down"
-            unmountOnExit
-          >
-            <div className="list-card-wrapper">
-              <div
-                className="list-card"
-                onClick={() => this.removeFromList(index)}
-              >
-                <span>{item.name}</span>
+        <TransitionGroup className="list-wrapper">
+          {this.state.list.map((item, index) => (
+            <CSSTransition
+              key={item.name}
+              timeout={500}
+              classNames="slide-down"
+              unmountOnExit
+            >
+              <div className="list-card-wrapper">
+                <div
+                  className="list-card"
+                  onClick={() => this.removeFromList(index)}
+                >
+                  <span>{item.name}</span>
+                </div>
               </div>
-            </div>
-          </CSSTransition>
-        ))}
-      </TransitionGroup>
+            </CSSTransition>
+          ))}
+        </TransitionGroup>
+      </div>
     );
   }
 }

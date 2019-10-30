@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+.list-wrapper {
+  width:100%;
+}
+
 .list-card-wrapper {
   width: 100%;
   overflow: hidden;
@@ -35,7 +39,7 @@
 }
 
 .slide-down-enter-active {
-  transition: max-height 500ms ease-in, opacity 300ms ease-in;
+  transition: max-height 500ms ease-out, opacity 300ms ease-out;
   opacity: 1;
   max-height: 120px;
 }
@@ -46,7 +50,7 @@
 
 .slide-down-exit-active {
   opacity: 0;
-  transition: max-height 500ms ease-in-out, opacity 300ms linear;
+  transition: max-height 500ms ease-out, opacity 300ms ease-out;
   max-height: 0;
 }
 .slide-down-exit-active span {
